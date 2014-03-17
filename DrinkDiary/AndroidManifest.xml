@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.jungcheol.drinkdiary.HomeActivity"></activity>
+        <activity android:name="com.jungcheol.drinkdiary.CreateActivity"></activity>
+        <activity android:name="com.jungcheol.drinkdiary.ListActivity"></activity>
+        <activity android:name="com.jungcheol.drinkdiary.ProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@ public class DrinkDiaryMainActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_drink_diary_main);
 		
-		Intent HomeIntent = new Intent(this, HomeActivity.class);
+		Intent HomeIntent = new Intent().setClass(this, HomeActivity.class);
 		Intent CreateIntent = new Intent(this, CreateActivity.class);
 		Intent ListIntent = new Intent(this, ListActivity.class);
 		Intent ProfileIntent = new Intent(this, ProfileActivity.class);
