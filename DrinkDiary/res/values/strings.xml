@@ -8,5 +8,7 @@
     <string name="createTabStr">작성</string>
     <string name="listTabStr">목록</string>
     <string name="profileTabStr">프로파일</string>
+    <string name="captureLabel">사진찍기</string>
+    <string name="captureStr">모임장소찍기</string>
 
 </resources>
