@@ -10,5 +10,6 @@
     <string name="profileTabStr">프로파일</string>
     <string name="captureLabel">사진찍기</string>
     <string name="captureStr">모임장소찍기</string>
+    <string name="memberLabel">멤버</string>
 
 </resources>
