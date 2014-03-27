@@ -21,58 +21,45 @@
         android:paddingRight="0dp"
         android:paddingTop="0dp" >
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent" >
 
-            <TableRow
-                android:id="@+id/tableRow1"
+            <TextView
+                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:text="TextView" />
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
+        </LinearLayout>
 
-            </TableRow>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-            <TableRow
-                android:id="@+id/tableRow2"
+            <EditText
+                android:id="@+id/memberText"
+                android:layout_width="89dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:layout_weight="1"
+                android:ems="10" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/captureAction"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:text="@string/captureStr" />
 
-                <EditText
-                    android:id="@+id/memberText"
-                    android:layout_width="89dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="31dp"
-                    android:ems="10" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <Button
-                    android:id="@+id/captureAction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/captureStr" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-            </TableRow>
-        </TableLayout>
-
-
+        </LinearLayout>
 
     </LinearLayout>
 
