@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.view.Menu;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabWidget;
 import android.widget.TabHost.TabSpec;
 
 public class DrinkDiaryMainActivity extends TabActivity {
@@ -29,23 +31,28 @@ public class DrinkDiaryMainActivity extends TabActivity {
 		Intent ListIntent = new Intent(this, ListActivity.class);
 		Intent ProfileIntent = new Intent(this, ProfileActivity.class);
 				
-		TabHost tabHost = getTabHost();
+		TabHost tabHost = getTabHost();		
+		tabHost.getTabWidget().setStripEnabled(false);
+//		tabHost.getTabWidget().setDividerDrawable(R.drawable.ic_launcher);
 		
-		TabSpec HomeTabSpec = tabHost.newTabSpec("HomeTabSpec").setIndicator("홈");
+		TabSpec HomeTabSpec = tabHost.newTabSpec("HomeTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_01_indicator));
 		HomeTabSpec.setContent(HomeIntent);
 		tabHost.addTab(HomeTabSpec);
 
-		TabSpec CreateTabSpec = tabHost.newTabSpec("CreateTabSpec").setIndicator("만들기");
+		TabSpec CreateTabSpec = tabHost.newTabSpec("CreateTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_02_indicator));
 		CreateTabSpec.setContent(CreateIntent);
 		tabHost.addTab(CreateTabSpec);
 		
-		TabSpec ListTabSpec = tabHost.newTabSpec("ListTabSpec").setIndicator("목록");
+		TabSpec ListTabSpec = tabHost.newTabSpec("ListTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_03_indicator));
 		ListTabSpec.setContent(ListIntent);
 		tabHost.addTab(ListTabSpec);
 		
-		TabSpec ProfileTabSpec = tabHost.newTabSpec("ProfileTabSpec").setIndicator("프로파일");
+		TabSpec ProfileTabSpec = tabHost.newTabSpec("ProfileTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_04_indicator));
 		ProfileTabSpec.setContent(ProfileIntent);
 		tabHost.addTab(ProfileTabSpec);
+		
+//		tabHost.setCurrentTab(1);
+		
 	}
 	
 	private static class UserHelper extends SQLiteOpenHelper {
