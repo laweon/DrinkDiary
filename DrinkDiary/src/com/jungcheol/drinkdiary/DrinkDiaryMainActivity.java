@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
 import android.view.Menu;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -32,7 +33,7 @@ public class DrinkDiaryMainActivity extends TabActivity {
 		Intent ProfileIntent = new Intent(this, ProfileActivity.class);
 				
 		TabHost tabHost = getTabHost();		
-		tabHost.getTabWidget().setStripEnabled(false);
+		
 //		tabHost.getTabWidget().setDividerDrawable(R.drawable.ic_launcher);
 		
 		TabSpec HomeTabSpec = tabHost.newTabSpec("HomeTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_01_indicator));
@@ -50,6 +51,11 @@ public class DrinkDiaryMainActivity extends TabActivity {
 		TabSpec ProfileTabSpec = tabHost.newTabSpec("ProfileTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_04_indicator));
 		ProfileTabSpec.setContent(ProfileIntent);
 		tabHost.addTab(ProfileTabSpec);
+		
+		for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+			tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#f8f8ff"));
+			tabHost.getTabWidget().setStripEnabled(false);
+		}
 		
 //		tabHost.setCurrentTab(1);
 		
