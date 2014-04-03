@@ -14,7 +14,9 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabWidget;
 import android.widget.TabHost.TabSpec;
 
-public class DrinkDiaryMainActivity extends TabActivity {
+public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeListener {
+	
+	TabHost tabHost;
 	
 	static final String PREFS_NAME = "LoginPrefs";
 	
@@ -32,8 +34,10 @@ public class DrinkDiaryMainActivity extends TabActivity {
 		Intent ListIntent = new Intent(this, ListActivity.class);
 		Intent ProfileIntent = new Intent(this, ProfileActivity.class);
 				
-		TabHost tabHost = getTabHost();		
+		tabHost = getTabHost();		
+		tabHost.setOnTabChangedListener(this);
 		
+//		tabHost.getTabWidget().setStripEnabled(false);
 //		tabHost.getTabWidget().setDividerDrawable(R.drawable.ic_launcher);
 		
 		TabSpec HomeTabSpec = tabHost.newTabSpec("HomeTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_01_indicator));
@@ -53,11 +57,11 @@ public class DrinkDiaryMainActivity extends TabActivity {
 		tabHost.addTab(ProfileTabSpec);
 		
 		for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
-			tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#f8f8ff"));
-			tabHost.getTabWidget().setStripEnabled(false);
+			tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#e1e4ea"));
+			
 		}
 		
-//		tabHost.setCurrentTab(1);
+		tabHost.setCurrentTab(0);
 		
 	}
 	
@@ -90,6 +94,17 @@ public class DrinkDiaryMainActivity extends TabActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.drink_diary_main, menu);
 		return true;
+	}
+
+	@Override
+	public void onTabChanged(String tabId) {
+		// TODO Auto-generated method stub
+		
+		for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+			tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#e1e4ea"));
+		}
+		
+		tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#797979"));
 	}
 
 }
