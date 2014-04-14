@@ -2,12 +2,17 @@ package com.jungcheol.drinkdiary;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -19,6 +24,8 @@ public class CreateActivity extends Activity {
 	
 	private Camera camera;
 	private CameraView preview;
+	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST = 100;
+	private Uri fileUri;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +41,19 @@ public class CreateActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				captureAction();
+//				captureAction();
+				
+				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				
+				fileUri = getOutputMediaFileUri();
+				intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+				
+				startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST);
 			}
 		});
 	}
-	
+
+/*
 	public void captureAction() {
 		camera = getCameraInstance();
 		
@@ -58,7 +73,29 @@ public class CreateActivity extends Activity {
 			}
 		});		
 	}
+*/
 	
+	private static File getOutputMediaFile() {
+		File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyCameraApp");
+	
+		if (!mediaStorageDir.exists()) {
+			if (!mediaStorageDir.mkdirs()) {
+				Log.d("MyCameraApp", "failed to create directory");
+				return null;
+			}
+		}
+		
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+		
+		return mediaFile;
+	}
+	
+	private static Uri getOutputMediaFileUri() {
+		return Uri.fromFile(getOutputMediaFile());
+		
+	}
+/*	
 	public static Camera getCameraInstance() {
 		Camera c = null;
 		
@@ -97,4 +134,6 @@ public class CreateActivity extends Activity {
 			}
 		}
 	};
+*/
+	
 }
