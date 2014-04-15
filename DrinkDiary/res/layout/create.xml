@@ -37,7 +37,7 @@
             android:background="#bec3ce" >
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/placeTxt"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -83,7 +83,7 @@
             android:background="#e1e4ea" >
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/peopleTxt"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -115,7 +115,7 @@
             android:background="#bec3ce" >
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/beerTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -168,7 +168,7 @@
             android:background="#bec3ce" >
 
             <EditText
-                android:id="@+id/EditText03"
+                android:id="@+id/sojuTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -221,7 +221,7 @@
             android:background="#bec3ce" >
 
             <EditText
-                android:id="@+id/EditText04"
+                android:id="@+id/malgoliTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -274,7 +274,7 @@
             android:background="#bec3ce" >
 
             <EditText
-                android:id="@+id/EditText01"
+                android:id="@+id/whiskyTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -327,7 +327,7 @@
             android:background="#bec3ce" >
 
             <EditText
-                android:id="@+id/EditText02"
+                android:id="@+id/etcTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"

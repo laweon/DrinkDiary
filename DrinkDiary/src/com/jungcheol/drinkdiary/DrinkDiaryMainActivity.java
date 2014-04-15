@@ -20,9 +20,9 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 	
 	static final String PREFS_NAME = "LoginPrefs";
 	
-	private static final String DATABASE_NAME = "user.db";
+	private static final String DATABASE_NAME = "dd.db";
 	private static final int DATABASE_VERSION = 1;
-	private static final String USER_TABLE_NAME = "user";
+	private static final String USER_TABLE_NAME = "dd";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,8 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 			
 		}
 		
-		tabHost.setCurrentTab(0);
+//		tabHost.setCurrentTab(0);
+//		tabHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.parseColor("#e1e4ea"));
 		
 	}
 	
@@ -77,7 +78,7 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 			// TODO Auto-generated method stub
 			
 			String query = "CREATE TABLE " + USER_TABLE_NAME + 
-					" (ID TEXT, PASS TEXT)";
+					" (place TEXT, people TEXT, beer Text, soju TEXT, malgoli TEXT, whisky TEXT, etc TEXT)";
 			db.execSQL(query);
 		}
 

@@ -19,6 +19,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class CreateActivity extends Activity {
 	
@@ -32,6 +33,9 @@ public class CreateActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.create);
+		
+		Toast.makeText(CreateActivity.this, 
+	              "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
 		
 		ImageView captureAction = (ImageView)findViewById(R.id.captureImage);
 //		Button captureAction = (Button)findViewById(R.id.captureAction);
