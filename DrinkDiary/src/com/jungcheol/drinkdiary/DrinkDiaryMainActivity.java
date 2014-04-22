@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -20,9 +21,8 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 	
 	static final String PREFS_NAME = "LoginPrefs";
 	
-	private static final String DATABASE_NAME = "dd.db";
-	private static final int DATABASE_VERSION = 1;
-	private static final String USER_TABLE_NAME = "dd";
+	private DbOpenHelper dbOpenHelper;
+	private Cursor cursor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,32 +64,15 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 //		tabHost.setCurrentTab(0);
 //		tabHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.parseColor("#e1e4ea"));
 		
-	}
-	
-	private static class UserHelper extends SQLiteOpenHelper {
-
-		public UserHelper(Context context) {
-			super(context, DATABASE_NAME, null, DATABASE_VERSION);
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public void onCreate(SQLiteDatabase db) {
-			// TODO Auto-generated method stub
-			
-			String query = "CREATE TABLE " + USER_TABLE_NAME + 
-					" (place TEXT, people TEXT, beer Text, soju TEXT, malgoli TEXT, whisky TEXT, etc TEXT)";
-			db.execSQL(query);
-		}
-
-		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// TODO Auto-generated method stub
-			
-		}
+		dbOpenHelper = new DbOpenHelper(this);
+		dbOpenHelper.open();
+		
+		dbOpenHelper.insert("1", "2", "3", "4", "5", "6", "7");
+		dbOpenHelper.insert("11", "22", "33", "44", "55", "66", "77");
+		
 		
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -106,6 +89,14 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 		}
 		
 		tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#797979"));
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		
+		dbOpenHelper.close();
+		super.onDestroy();
 	}
 
 }
