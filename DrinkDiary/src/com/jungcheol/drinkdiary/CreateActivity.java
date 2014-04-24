@@ -7,6 +7,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.net.Uri;
@@ -23,16 +24,20 @@ import android.widget.Toast;
 
 public class CreateActivity extends Activity {
 	
-	private Camera camera;
-	private CameraView preview;
+//	private Camera camera;
+//	private CameraView preview;
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST = 100;
 	private Uri fileUri;
+	private Bitmap bitmap;
+	private ImageView preview;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.create);
+		
+		preview = (ImageView)findViewById(R.id.preview);
 		
 		Toast.makeText(CreateActivity.this, 
 	              "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
@@ -56,6 +61,44 @@ public class CreateActivity extends Activity {
 			}
 		});
 	}
+	
+	@Override
+		protected void onStart() {
+			// TODO Auto-generated method stub
+			super.onStart();
+			
+			if (bitmap != null) {
+				preview.setImageBitmap(bitmap);
+			}
+		}
+	
+	@Override
+		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+			// TODO Auto-generated method stub
+			super.onActivityResult(requestCode, resultCode, data);
+			
+			switch (requestCode) {
+			case CAPTURE_IMAGE_ACTIVITY_REQUEST:
+				if (resultCode == Activity.RESULT_OK) {
+					try {
+						if (bitmap != null && !bitmap.isRecycled()) {
+							bitmap.recycle();
+							bitmap = null;
+						}
+						
+						bitmap = (Bitmap)data.getExtras().get(MediaStore.EXTRA_OUTPUT);
+						preview.setImageBitmap(bitmap);
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}
+				
+				break;
+
+			default:
+				break;
+			}
+		}
 
 /*
 	public void captureAction() {
