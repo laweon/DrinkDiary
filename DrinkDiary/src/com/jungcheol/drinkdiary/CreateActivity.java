@@ -77,14 +77,26 @@ public class CreateActivity extends Activity {
 			// TODO Auto-generated method stub
 			super.onActivityResult(requestCode, resultCode, data);
 			
+			Log.d("", "[ddLog] 11111111111111111111");
+			
 			switch (requestCode) {
 			case CAPTURE_IMAGE_ACTIVITY_REQUEST:
+				
+				Log.d("", "[ddLog] 222222222222222222222222");
 				if (resultCode == Activity.RESULT_OK) {
+					
+					Log.d("", "[ddLog] 33333333333333333333333");
+					
 					try {
+						/*
 						if (bitmap != null && !bitmap.isRecycled()) {
 							bitmap.recycle();
 							bitmap = null;
 						}
+						*/
+						Log.d("", "[ddLog] MediaStore.EXTRA_OUTPUT : " + (String)data.getExtras().get(MediaStore.EXTRA_OUTPUT));
+						
+						
 						
 						bitmap = (Bitmap)data.getExtras().get(MediaStore.EXTRA_OUTPUT);
 						preview.setImageBitmap(bitmap);
