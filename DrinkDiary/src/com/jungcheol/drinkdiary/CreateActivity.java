@@ -7,6 +7,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
@@ -31,11 +32,20 @@ public class CreateActivity extends Activity {
 	private Bitmap bitmap;
 	private ImageView preview;
 	
+	private DbOpenHelper dbOpenHelper;
+	private Cursor cursor;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.create);
+		
+		dbOpenHelper = new DbOpenHelper(this);
+		dbOpenHelper.open();
+		
+		dbOpenHelper.insert("1", "2", "3", "4", "5", "6", "7");
+		dbOpenHelper.insert("11", "22", "33", "44", "55", "66", "77");
 		
 		preview = (ImageView)findViewById(R.id.preview);
 		
@@ -112,6 +122,8 @@ public class CreateActivity extends Activity {
 			}
 		}
 
+
+	
 /*
 	public void captureAction() {
 		camera = getCameraInstance();
@@ -154,6 +166,15 @@ public class CreateActivity extends Activity {
 		return Uri.fromFile(getOutputMediaFile());
 		
 	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		
+		dbOpenHelper.close();
+		super.onDestroy();
+	}	
+	
 /*	
 	public static Camera getCameraInstance() {
 		Camera c = null;

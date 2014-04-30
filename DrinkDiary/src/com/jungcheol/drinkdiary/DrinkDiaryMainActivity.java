@@ -20,9 +20,6 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 	TabHost tabHost;
 	
 	static final String PREFS_NAME = "LoginPrefs";
-	
-	private DbOpenHelper dbOpenHelper;
-	private Cursor cursor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +61,7 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 //		tabHost.setCurrentTab(0);
 //		tabHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.parseColor("#e1e4ea"));
 		
-		dbOpenHelper = new DbOpenHelper(this);
-		dbOpenHelper.open();
-		
-		dbOpenHelper.insert("1", "2", "3", "4", "5", "6", "7");
-		dbOpenHelper.insert("11", "22", "33", "44", "55", "66", "77");
+
 		
 		
 	}
@@ -91,12 +84,6 @@ public class DrinkDiaryMainActivity extends TabActivity implements OnTabChangeLi
 		tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#797979"));
 	}
 	
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		
-		dbOpenHelper.close();
-		super.onDestroy();
-	}
+
 
 }
