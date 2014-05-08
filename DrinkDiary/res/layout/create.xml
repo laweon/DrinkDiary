@@ -43,7 +43,9 @@
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/edittext_border" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -99,7 +101,9 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:background="@drawable/edittext_border"
                 android:ems="10" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -130,7 +134,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/edittext_border" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -183,7 +189,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/edittext_border" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -236,7 +244,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/edittext_border" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -289,7 +299,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/edittext_border" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -342,7 +354,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@drawable/edittext_border" />
+
         </LinearLayout>
 
         <LinearLayout
