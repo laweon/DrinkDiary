@@ -112,6 +112,8 @@ public class CreateActivity extends Activity {
 						preview.setImageBitmap(bitmap);
 					} catch (Exception e) {
 						// TODO: handle exception
+						
+						Log.d("", "[ddLog] 444444444444444444");
 					}
 				}
 				
