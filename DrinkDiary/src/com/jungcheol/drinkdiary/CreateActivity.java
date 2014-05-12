@@ -104,16 +104,20 @@ public class CreateActivity extends Activity {
 							bitmap = null;
 						}
 						*/
-						Log.d("", "[ddLog] MediaStore.EXTRA_OUTPUT : " + (String)data.getExtras().get(MediaStore.EXTRA_OUTPUT));
+						Log.d("", "[ddLog] 444444444444444444");
+//						Log.d("", "[ddLog] MediaStore.EXTRA_OUTPUT : " + MediaStore.EXTRA_OUTPUT);
+						Log.d("", "[ddLog] 55555555555555555");
 						
 						
-						
-						bitmap = (Bitmap)data.getExtras().get(MediaStore.EXTRA_OUTPUT);
+//						bitmap = (Bitmap)data.getExtras().get(MediaStore.EXTRA_OUTPUT);
+						bitmap = (Bitmap)data.getExtras().get("data");
 						preview.setImageBitmap(bitmap);
+						preview.setScaleType(ImageView.ScaleType.FIT_XY);
+
 					} catch (Exception e) {
 						// TODO: handle exception
 						
-						Log.d("", "[ddLog] 444444444444444444");
+						Log.d("", "[ddLog] 6666666666666666");
 					}
 				}
 				
@@ -160,6 +164,8 @@ public class CreateActivity extends Activity {
 		
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 		File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+		
+		
 		
 		return mediaFile;
 	}
