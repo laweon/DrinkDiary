@@ -71,7 +71,7 @@ public class CreateActivity extends Activity {
 			}
 		});
 	}
-	
+	/*
 	@Override
 		protected void onStart() {
 			// TODO Auto-generated method stub
@@ -81,11 +81,11 @@ public class CreateActivity extends Activity {
 				preview.setImageBitmap(bitmap);
 			}
 		}
-	
+	*/
 	@Override
 		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 			// TODO Auto-generated method stub
-			super.onActivityResult(requestCode, resultCode, data);
+//			super.onActivityResult(requestCode, resultCode, data);
 			
 			Log.d("", "[ddLog] 11111111111111111111");
 			
@@ -104,20 +104,28 @@ public class CreateActivity extends Activity {
 							bitmap = null;
 						}
 						*/
+						
+//						Bundle extra = data.getExtras();
+						
 						Log.d("", "[ddLog] 444444444444444444");
-//						Log.d("", "[ddLog] MediaStore.EXTRA_OUTPUT : " + MediaStore.EXTRA_OUTPUT);
+//						Log.d("", "[ddLog] MediaStore.EXTRA_OUTPUT : " + getRealPathFromURI(curImageURI));
 						Log.d("", "[ddLog] 55555555555555555");
 						
 						
 //						bitmap = (Bitmap)data.getExtras().get(MediaStore.EXTRA_OUTPUT);
 						bitmap = (Bitmap)data.getExtras().get("data");
-						preview.setImageBitmap(bitmap);
-						preview.setScaleType(ImageView.ScaleType.FIT_XY);
+						Log.d("", "[ddLog] 55555555555555555");
+						if (bitmap == null) {
+							Log.d("", "[ddLog] 66666666666666666666");
+//							preview.setImageBitmap(bitmap);
+						}
+						
+//						preview.setScaleType(ImageView.ScaleType.FIT_XY);
 
 					} catch (Exception e) {
 						// TODO: handle exception
 						
-						Log.d("", "[ddLog] 6666666666666666");
+						Log.d("", "[ddLog] 7777777777777777" + e.toString());
 					}
 				}
 				
@@ -173,6 +181,15 @@ public class CreateActivity extends Activity {
 	private static Uri getOutputMediaFileUri() {
 		return Uri.fromFile(getOutputMediaFile());
 		
+	}
+	
+	public String getRealPathFromURI(Uri contentUri) {
+		String[] proj = {MediaStore.Images.Media.DATA};
+		Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+		int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+		cursor.moveToFirst();
+		
+		return cursor.getString(columnIndex);
 	}
 	
 	@Override
