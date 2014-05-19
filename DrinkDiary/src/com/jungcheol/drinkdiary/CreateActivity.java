@@ -1,14 +1,18 @@
 package com.jungcheol.drinkdiary;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.net.Uri;
@@ -40,6 +44,8 @@ public class CreateActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.create);
+
+
 		
 		dbOpenHelper = new DbOpenHelper(this);
 		dbOpenHelper.open();
@@ -49,6 +55,43 @@ public class CreateActivity extends Activity {
 		
 		preview = (ImageView)findViewById(R.id.preview);
 		
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inSampleSize = 4;
+//		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/MyCameraApp/1395649145889.jpg");
+//		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/NAVER_LINE/1395649145889.jpg");
+		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/NAVER_LINE/IMG_aaaa.jpg", options);
+		Bitmap bMap2 = Bitmap.createScaledBitmap(bMap, 300, 300, true);
+		Log.d("", "[ddLog] 11" + bMap.toString());
+//		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/NAVER_LINE/jc.png", options);
+//		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/Private/20131204_142401.jpg");
+//		Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.main_visual);
+//		preview.setImageBitmap(bMap);
+		
+		preview.setImageBitmap(bMap2);
+		
+		
+
+//		Log.d("", "[ddLog] 66" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
+		/*
+		try {
+			Log.d("", "[ddLog] 11");
+			File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyCameraApp");	
+			Log.d("", "[ddLog] 22");
+			File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "IMG_aaaa.jpg");
+			Log.d("", "[ddLog] 33" + mediaStorageDir.getPath());
+			FileInputStream input_stream = new FileInputStream(file);
+			Log.d("", "[ddLog] 44");
+			preview.setImageDrawable(Drawable.createFromStream(input_stream, "IMG_aaaa.jpg"));
+			Log.d("", "[ddLog] 55");
+			input_stream.close();
+			Log.d("", "[ddLog] 66");
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			Log.d("", "[ddLog] 99");
+			
+		}
+		*/
 		Toast.makeText(CreateActivity.this, 
 	              "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
 		
@@ -66,6 +109,8 @@ public class CreateActivity extends Activity {
 				
 				fileUri = getOutputMediaFileUri();
 				intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+				
+			
 				
 				startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST);
 			}
@@ -111,21 +156,20 @@ public class CreateActivity extends Activity {
 //						Log.d("", "[ddLog] MediaStore.EXTRA_OUTPUT : " + getRealPathFromURI(curImageURI));
 						Log.d("", "[ddLog] 55555555555555555");
 						
-						
+						File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyCameraApp");					
+						File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_aaaa.jpg");
+						FileInputStream input_stream = new FileInputStream(mediaFile);
+						preview.setImageDrawable(Drawable.createFromStream(input_stream, "image.jpg"));
+						Log.d("", "[ddLog] 6666666666");
 //						bitmap = (Bitmap)data.getExtras().get(MediaStore.EXTRA_OUTPUT);
-						bitmap = (Bitmap)data.getExtras().get("data");
-						Log.d("", "[ddLog] 55555555555555555");
-						if (bitmap == null) {
-							Log.d("", "[ddLog] 66666666666666666666");
-//							preview.setImageBitmap(bitmap);
-						}
-						
+//						bitmap = (Bitmap)data.getExtras().get("data");
+//						preview.setImageBitmap(bitmap);						
 //						preview.setScaleType(ImageView.ScaleType.FIT_XY);
 
 					} catch (Exception e) {
 						// TODO: handle exception
 						
-						Log.d("", "[ddLog] 7777777777777777" + e.toString());
+						Log.d("", "[ddLog] 88888888888888" + e.toString());
 					}
 				}
 				
@@ -171,7 +215,8 @@ public class CreateActivity extends Activity {
 		}
 		
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-		File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+//		File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+		File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_aaaa.jpg");
 		
 		
 		
