@@ -105,7 +105,7 @@ public class CreateActivity extends Activity {
 				
 //				captureAction();
 				
-				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 				
 				fileUri = getOutputMediaFileUri();
 				intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
@@ -132,6 +132,53 @@ public class CreateActivity extends Activity {
 			// TODO Auto-generated method stub
 //			super.onActivityResult(requestCode, resultCode, data);
 			
+		Log.d("", "[ddLog] requestCode : " + requestCode);
+		Log.d("", "[ddLog] resultCode : " + Integer.toString(resultCode));
+		Log.d("", "[ddLog] RESULT_OK : " + Integer.toString(RESULT_OK));
+		
+
+		
+		try {
+			if (data == null) {
+				Log.d("", "[ddLog] !data");
+			} else {
+				Log.d("", "[ddLog] data");
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			Log.d("", "[ddLog] Exception");
+			e.toString();
+		}
+		
+        Bundle extras = data.getExtras();
+        if (extras.keySet().contains("data") ){
+        	Log.d("", "[ddLog] 11");
+        	/*
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            thumbnail = (Bitmap) extras.get("data");
+            if (thumbnail != null) {
+                Toast.makeText(this, "YES Thumbnail", Toast.LENGTH_LONG).show();
+                BitmapFactory.Options opt = new BitmapFactory.Options();
+                thumbnail = (Bitmap) extras.get("data");
+                imageCam(thumbnail);
+            }
+            */
+        } else {
+        	Log.d("", "[ddLog] 22");
+        	/*
+            Uri imageURI = getIntent().getData();
+            ImageView imageview = (ImageView)findViewById(R.id.imageView1);
+            imageview.setImageURI(imageURI);
+
+            if(imageURI != null){
+                Toast.makeText(this, "YES Image Uri", Toast.LENGTH_LONG).show();
+            }
+            */
+        }
+        super.onActivityResult(requestCode, resultCode, data);  
+
+		
 			Log.d("", "[ddLog] 11111111111111111111");
 			
 			switch (requestCode) {
@@ -151,6 +198,8 @@ public class CreateActivity extends Activity {
 						*/
 						
 //						Bundle extra = data.getExtras();
+						
+						
 						
 						Log.d("", "[ddLog] 444444444444444444");
 //						Log.d("", "[ddLog] MediaStore.EXTRA_OUTPUT : " + getRealPathFromURI(curImageURI));
