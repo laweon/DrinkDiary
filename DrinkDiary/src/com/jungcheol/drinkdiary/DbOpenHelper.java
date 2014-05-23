@@ -10,30 +10,32 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DbOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 	
-	private static final String DATABASE_NAME = "drink_diary.db";
 	private static final int DATABASE_VERSION = 1;
+	private static final String DATABASE_NAME = "drink_diary.db";
 	private static final String TABLE_NAME = "drink_diary";
 	
-	public static SQLiteDatabase db;
-	private DatabaseHelper databaseHelper;
-	private Context ctx;
 	
-	private class DatabaseHelper extends SQLiteOpenHelper {
+	
+	
 
-		public DatabaseHelper(Context context, String name, CursorFactory factory,
-				int version) {
-			super(context, name, factory, version);
-			// TODO Auto-generated constructor stub
-		}
+
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			// TODO Auto-generated method stub
 
 			String query = "CREATE TABLE " + TABLE_NAME + 
-					" (place TEXT, people TEXT, beer Text, soju TEXT, malgoli TEXT, whisky TEXT, etc TEXT)";
+					" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+					+ "place TEXT, "
+					+ "people TEXT, "
+					+ "beer INTEGER, "
+					+ "soju INTEGER, "
+					+ "malgoli INTEGER, "
+					+ "whisky INTEGER, "
+					+ "etc INTEGER)";
+			
 			db.execSQL(query);
 		}
 
@@ -43,21 +45,9 @@ public class DbOpenHelper {
 
 		}
 
-	}
+
 	
-	public DbOpenHelper(Context context) {
-		// TODO Auto-generated constructor stub
-		
-		this.ctx = context;
-	}
-		
-	public DbOpenHelper open() throws SQLException {
-		databaseHelper = new DatabaseHelper(ctx, DATABASE_NAME, null, DATABASE_VERSION);
-		db = databaseHelper.getWritableDatabase();
-		
-		return this;
-	}
-	
+
 	public void close() {
 		db.close();
 	}

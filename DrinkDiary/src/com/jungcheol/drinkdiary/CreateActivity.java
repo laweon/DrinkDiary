@@ -55,43 +55,18 @@ public class CreateActivity extends Activity {
 		
 		preview = (ImageView)findViewById(R.id.preview);
 		
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inSampleSize = 4;
-//		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/MyCameraApp/1395649145889.jpg");
-//		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/NAVER_LINE/1395649145889.jpg");
-		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/NAVER_LINE/IMG_aaaa.jpg", options);
-		Bitmap bMap2 = Bitmap.createScaledBitmap(bMap, 300, 300, true);
-		Log.d("", "[ddLog] 11" + bMap.toString());
-//		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/NAVER_LINE/jc.png", options);
-//		Bitmap bMap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/Private/20131204_142401.jpg");
-//		Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.main_visual);
-//		preview.setImageBitmap(bMap);
-		
-		preview.setImageBitmap(bMap2);
-		
-		
-
-//		Log.d("", "[ddLog] 66" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
-		/*
-		try {
-			Log.d("", "[ddLog] 11");
-			File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyCameraApp");	
-			Log.d("", "[ddLog] 22");
-			File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "IMG_aaaa.jpg");
-			Log.d("", "[ddLog] 33" + mediaStorageDir.getPath());
-			FileInputStream input_stream = new FileInputStream(file);
-			Log.d("", "[ddLog] 44");
-			preview.setImageDrawable(Drawable.createFromStream(input_stream, "IMG_aaaa.jpg"));
-			Log.d("", "[ddLog] 55");
-			input_stream.close();
-			Log.d("", "[ddLog] 66");
-		} catch (Exception e) {
-			// TODO: handle exception
+		preview.setOnClickListener(new View.OnClickListener() {
 			
-			Log.d("", "[ddLog] 99");
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 			
-		}
-		*/
+				Intent actionViewIntent = new Intent(Intent.ACTION_VIEW);
+				actionViewIntent.setDataAndType(fileUri, "image/jpg");
+				startActivity(actionViewIntent);
+			}
+		});
+		
 		Toast.makeText(CreateActivity.this, 
 	              "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
 		
@@ -101,17 +76,14 @@ public class CreateActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub			
 //				captureAction();
 				
 				Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 				
 				fileUri = getOutputMediaFileUri();
-				intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-				
+				intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);	
 			
-				
 				startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST);
 			}
 		});
@@ -130,65 +102,13 @@ public class CreateActivity extends Activity {
 	@Override
 		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 			// TODO Auto-generated method stub
-//			super.onActivityResult(requestCode, resultCode, data);
-			
-		Log.d("", "[ddLog] requestCode : " + requestCode);
-		Log.d("", "[ddLog] resultCode : " + Integer.toString(resultCode));
-		Log.d("", "[ddLog] RESULT_OK : " + Integer.toString(RESULT_OK));
-		
-
-		
-		try {
-			if (data == null) {
-				Log.d("", "[ddLog] !data");
-			} else {
-				Log.d("", "[ddLog] data");
-			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			Log.d("", "[ddLog] Exception");
-			e.toString();
-		}
-		
-        Bundle extras = data.getExtras();
-        if (extras.keySet().contains("data") ){
-        	Log.d("", "[ddLog] 11");
-        	/*
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            thumbnail = (Bitmap) extras.get("data");
-            if (thumbnail != null) {
-                Toast.makeText(this, "YES Thumbnail", Toast.LENGTH_LONG).show();
-                BitmapFactory.Options opt = new BitmapFactory.Options();
-                thumbnail = (Bitmap) extras.get("data");
-                imageCam(thumbnail);
-            }
-            */
-        } else {
-        	Log.d("", "[ddLog] 22");
-        	/*
-            Uri imageURI = getIntent().getData();
-            ImageView imageview = (ImageView)findViewById(R.id.imageView1);
-            imageview.setImageURI(imageURI);
-
-            if(imageURI != null){
-                Toast.makeText(this, "YES Image Uri", Toast.LENGTH_LONG).show();
-            }
-            */
-        }
-        super.onActivityResult(requestCode, resultCode, data);  
-
-		
-			Log.d("", "[ddLog] 11111111111111111111");
-			
+			super.onActivityResult(requestCode, resultCode, data);
+				
 			switch (requestCode) {
 			case CAPTURE_IMAGE_ACTIVITY_REQUEST:
 				
-				Log.d("", "[ddLog] 222222222222222222222222");
 				if (resultCode == Activity.RESULT_OK) {
-					
-					Log.d("", "[ddLog] 33333333333333333333333");
-					
+								
 					try {
 						/*
 						if (bitmap != null && !bitmap.isRecycled()) {
@@ -196,29 +116,18 @@ public class CreateActivity extends Activity {
 							bitmap = null;
 						}
 						*/
-						
-//						Bundle extra = data.getExtras();
-						
-						
-						
-						Log.d("", "[ddLog] 444444444444444444");
-//						Log.d("", "[ddLog] MediaStore.EXTRA_OUTPUT : " + getRealPathFromURI(curImageURI));
-						Log.d("", "[ddLog] 55555555555555555");
-						
-						File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyCameraApp");					
-						File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_aaaa.jpg");
-						FileInputStream input_stream = new FileInputStream(mediaFile);
-						preview.setImageDrawable(Drawable.createFromStream(input_stream, "image.jpg"));
-						Log.d("", "[ddLog] 6666666666");
-//						bitmap = (Bitmap)data.getExtras().get(MediaStore.EXTRA_OUTPUT);
-//						bitmap = (Bitmap)data.getExtras().get("data");
-//						preview.setImageBitmap(bitmap);						
-//						preview.setScaleType(ImageView.ScaleType.FIT_XY);
+											
+						BitmapFactory.Options options = new BitmapFactory.Options();
+						options.inSampleSize = 4;
 
+						Bitmap src = BitmapFactory.decodeFile(fileUri.getPath(), options);
+						Bitmap bMap = Bitmap.createScaledBitmap(src, 30, 30, true);
+						
+						preview.setImageBitmap(bMap);
 					} catch (Exception e) {
 						// TODO: handle exception
-						
-						Log.d("", "[ddLog] 88888888888888" + e.toString());
+					
+						Log.d("", "[ddLog] onActivityResult Exception : " + e.toString());
 					}
 				}
 				
@@ -254,20 +163,17 @@ public class CreateActivity extends Activity {
 */
 	
 	private static File getOutputMediaFile() {
-		File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyCameraApp");
+		File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ddCameraApp");
 	
 		if (!mediaStorageDir.exists()) {
 			if (!mediaStorageDir.mkdirs()) {
-				Log.d("MyCameraApp", "failed to create directory");
+				Log.d("ddCameraApp", "failed to create directory");
 				return null;
 			}
 		}
 		
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//		File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
-		File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_aaaa.jpg");
-		
-		
+		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		File mediaFile = new File(mediaStorageDir.getPath() + File.separator + timeStamp + ".jpg");
 		
 		return mediaFile;
 	}
@@ -275,15 +181,6 @@ public class CreateActivity extends Activity {
 	private static Uri getOutputMediaFileUri() {
 		return Uri.fromFile(getOutputMediaFile());
 		
-	}
-	
-	public String getRealPathFromURI(Uri contentUri) {
-		String[] proj = {MediaStore.Images.Media.DATA};
-		Cursor cursor = managedQuery(contentUri, proj, null, null, null);
-		int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-		cursor.moveToFirst();
-		
-		return cursor.getString(columnIndex);
 	}
 	
 	@Override
