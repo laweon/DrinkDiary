@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		String query = "CREATE TABLE " + TABLE_NAME + 
 				" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
-				+ "imgUri TEXT, "
+				+ "imgSrc TEXT, "
 				+ "place TEXT, "
 				+ "people TEXT, "
 				+ "beer INTEGER, "
@@ -48,34 +48,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	}
 
-	public void insert(String imgUri, String place, String people, String beer, String soju, String malgoli, String whisky, String etc) {
+	public int insert(InfoClass info) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
-		values.put("imgUri", imgUri);
-		values.put("place", place);
-		values.put("people", people);
-		values.put("beer", beer);
-		values.put("soju", soju);
-		values.put("malgoli", malgoli);
-		values.put("whisky", whisky);
-		values.put("etc", etc);
+		values.put("imgSrc", info.getImgSrc());
+		values.put("place", info.getPlace());
+		values.put("people", info.getPeople());
+		values.put("beer", info.getBeer());
+		values.put("soju", info.getSoju());
+		values.put("malgoli", info.getMalgoli());
+		values.put("whisky", info.getWhisky());
+		values.put("etc", info.getEtc());
 		
-		db.insert(TABLE_NAME, null, values);
-		db.close();
+		int result = (int)db.insert(TABLE_NAME, null, values);
+		
+		return result;
 	}
+	
+	public int update(InfoClass info) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		values.put("imgSrc", info.getImgSrc());
+		values.put("place", info.getPlace());
+		values.put("people", info.getPeople());
+		values.put("beer", info.getBeer());
+		values.put("soju", info.getSoju());
+		values.put("malgoli", info.getMalgoli());
+		values.put("whisky", info.getWhisky());
+		values.put("etc", info.getEtc());
+		String[] args = {String.valueOf(info.getId())};
+		
+		int result = db.update(TABLE_NAME, values, "id = ?", args);
+		
+		return result;
+	}	
+
+	public int delete(InfoClass info) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		String[] args = {String.valueOf(info.getId())};
+		
+		int result = db.delete(TABLE_NAME, "id = ?",args);
+		
+		return result;
+	}	
 	
 	public List<InfoClass> getAllInfo() {
 		SQLiteDatabase db = this.getReadableDatabase();
 		List<InfoClass> infoList = new ArrayList<InfoClass>();
-		String selectQuery = "SELECT id, imgUri, place, people, beer, soju, malgoli, whisky, etc FROM " + TABLE_NAME;
+		String selectQuery = "SELECT id, imgSrc, place, people, beer, soju, malgoli, whisky, etc FROM " + TABLE_NAME;
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		
 		if (cursor.moveToFirst()) {
 			do {
 				InfoClass info = new InfoClass();
 				info.setId(cursor.getInt(0));
-				info.setImgUri(cursor.getString(1));
+				info.setImgSrc(cursor.getString(1));
 				info.setPlace(cursor.getString(2));
 				info.setPeople(cursor.getString(3));
 				info.setBeer(cursor.getInt(4));
@@ -93,7 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	public InfoClass getInfo(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
-		String selectQuery = "SELECT id, imgUri, place, people, beer, soju, malgoli, whisky, etc FROM " + TABLE_NAME + " WHERE id = ?";
+		String selectQuery = "SELECT id, imgSrc, place, people, beer, soju, malgoli, whisky, etc FROM " + TABLE_NAME + " WHERE id = ?";
 		String[] args= {String.valueOf(id)};
 		Cursor cursor = db.rawQuery(selectQuery, args);
 		

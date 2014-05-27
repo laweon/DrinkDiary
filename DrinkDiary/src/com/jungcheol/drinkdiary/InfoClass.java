@@ -3,7 +3,7 @@ package com.jungcheol.drinkdiary;
 public class InfoClass {
 	
 	private int id;
-	private String imgUri;
+	private String imgSrc;
 	private String place;
 	private String people;
 	private int beer;
@@ -16,11 +16,11 @@ public class InfoClass {
 		super();
 	}
 
-	public InfoClass(int id, String imgUri, String place, String people, int beer, int soju,
+	public InfoClass(int id, String imgSrc, String place, String people, int beer, int soju,
 			int malgoli, int whisky, int etc) {
 		super();
 		this.id = id;
-		this.imgUri = imgUri;
+		this.imgSrc = imgSrc;
 		this.place = place;
 		this.people = people;
 		this.beer = beer;
@@ -37,11 +37,11 @@ public class InfoClass {
 		this.id = id;
 	}
 
-	public String getImgUri() {
-		return imgUri;
+	public String getImgSrc() {
+		return imgSrc;
 	}
-	public void setImgUri(String imgUri) {
-		this.imgUri = imgUri;
+	public void setImgSrc(String imgSrc) {
+		this.imgSrc = imgSrc;
 	}
 
 	public String getPlace() {

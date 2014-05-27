@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class CreateActivity extends Activity {
 	private Bitmap bitmap;
 	private ImageView preview;
 	
-	private DbOpenHelper dbOpenHelper;
+	private DatabaseHelper db;
 	private Cursor cursor;
 	
 	@Override
@@ -44,14 +45,11 @@ public class CreateActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.create);
-
-
+				
+		db = new DatabaseHelper(this);
 		
-		dbOpenHelper = new DbOpenHelper(this);
-		dbOpenHelper.open();
-		
-		dbOpenHelper.insert("1", "2", "3", "4", "5", "6", "7");
-		dbOpenHelper.insert("11", "22", "33", "44", "55", "66", "77");
+//		dbOpenHelper.insert("1", "2", "3", "4", "5", "6", "7");
+//		dbOpenHelper.insert("11", "22", "33", "44", "55", "66", "77");
 		
 		preview = (ImageView)findViewById(R.id.preview);
 		
@@ -67,8 +65,8 @@ public class CreateActivity extends Activity {
 			}
 		});
 		
-		Toast.makeText(CreateActivity.this, 
-	              "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
+//		Toast.makeText(CreateActivity.this, 
+//	              "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
 		
 		ImageView captureAction = (ImageView)findViewById(R.id.captureImage);
 //		Button captureAction = (Button)findViewById(R.id.captureAction);
@@ -85,6 +83,45 @@ public class CreateActivity extends Activity {
 				intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);	
 			
 				startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST);
+			}
+		});
+		
+		ImageView submitAction = (ImageView)findViewById(R.id.submitImage);
+		submitAction.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				EditText placeTxt = (EditText)findViewById(R.id.placeTxt);
+				EditText peopleTxt = (EditText)findViewById(R.id.peopleTxt);
+				EditText beerTxt = (EditText)findViewById(R.id.beerTxt);
+				EditText sojuTxt = (EditText)findViewById(R.id.sojuTxt);
+				EditText malgoliTxt = (EditText)findViewById(R.id.malgoliTxt);
+				EditText whiskyTxt = (EditText)findViewById(R.id.whiskyTxt);
+				EditText etcTxt = (EditText)findViewById(R.id.etcTxt);
+				
+				InfoClass info = new InfoClass();
+				/*
+				info.setImgSrc(fileUri.toString());
+				info.setPlace(placeTxt.getText().toString());
+				info.setPeople(peopleTxt.getText().toString());
+				info.setBeer(Integer.parseInt(beerTxt.getText().toString()));
+				info.setSoju(Integer.parseInt(sojuTxt.getText().toString()));
+				info.setMalgoli(Integer.parseInt(malgoliTxt.getText().toString()));
+				info.setWhisky(Integer.parseInt(whiskyTxt.getText().toString()));
+				info.setEtc(Integer.parseInt(etcTxt.getText().toString()));
+				*/
+				info.setImgSrc("/aaaa");
+				info.setPlace("a");
+				info.setPeople("b");
+				info.setBeer(1);
+				info.setSoju(2);
+				info.setMalgoli(3);
+				info.setWhisky(4);
+				info.setEtc(5);
+				
+				int result = db.insert(info);
 			}
 		});
 	}
@@ -183,6 +220,7 @@ public class CreateActivity extends Activity {
 		
 	}
 	
+/*	
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -190,7 +228,7 @@ public class CreateActivity extends Activity {
 		dbOpenHelper.close();
 		super.onDestroy();
 	}	
-	
+*/	
 /*	
 	public static Camera getCameraInstance() {
 		Camera c = null;

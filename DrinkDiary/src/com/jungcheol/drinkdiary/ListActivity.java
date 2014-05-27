@@ -1,6 +1,7 @@
 package com.jungcheol.drinkdiary;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -9,48 +10,34 @@ import android.util.Log;
 
 public class ListActivity extends Activity {
 	
-	private DbOpenHelper dbOpenHelper;
-	private Cursor cursor;
-	private InfoClass infoclass;
-	private ArrayList<InfoClass> infoArray; 
+	private DatabaseHelper db;
+	private InfoClass info;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list);
 		
-		dbOpenHelper = new DbOpenHelper(this);
-		dbOpenHelper.open();
+		db = new DatabaseHelper(this);
 		
-		cursor = dbOpenHelper.getAllColumns();
-		
-		while (cursor.moveToNext()) {
-			/*
-			infoclass = new InfoClass(
-					cursor.getString(cursor.getColumnIndex("place")), 
-					cursor.getString(cursor.getColumnIndex("people")), 
-					cursor.getString(cursor.getColumnIndex("beer")), 
-					cursor.getString(cursor.getColumnIndex("soju")), 
-					cursor.getString(cursor.getColumnIndex("malgoli")), 
-					cursor.getString(cursor.getColumnIndex("whisky")), 
-					cursor.getString(cursor.getColumnIndex("etc"))
-					);
-			
-			infoArray.add(infoclass);
-			*/
-			Log.d("", "place: " + cursor.getString(cursor.getColumnIndex("place")));
-			Log.d("", "people: " + cursor.getString(cursor.getColumnIndex("people")));
-			Log.d("", "beer: " + cursor.getString(cursor.getColumnIndex("beer")));
-			Log.d("", "soju: " + cursor.getString(cursor.getColumnIndex("soju")));
-			Log.d("", "malgoli: " + cursor.getString(cursor.getColumnIndex("malgoli")));
-			Log.d("", "whisky: " + cursor.getString(cursor.getColumnIndex("whisky")));
-			Log.d("", "etc: " + cursor.getString(cursor.getColumnIndex("etc")));
-			
+		List<InfoClass> infoList = db.getAllInfo();
+		Log.d("", "[ddLog] 11");
+		for (int i = 0; i < infoList.size(); i++) {
+			info = (InfoClass)infoList.get(i);
+			Log.d("", "[ddLog] 22");
+			Log.d("", "[ddLog] imgSrc : " + info.getImgSrc());
+			Log.d("", "[ddLog] place : " + info.getPlace());
+			Log.d("", "[ddLog] people : " + info.getPeople());
+			Log.d("", "[ddLog] beer : " + info.getBeer());
+			Log.d("", "[ddLog] soju : " + info.getSoju());
+			Log.d("", "[ddLog] malgoli : " + info.getMalgoli());
+			Log.d("", "[ddLog] whisky : " + info.getWhisky());
+			Log.d("", "[ddLog] etc : " + info.getEtc());
+			Log.d("", "[ddLog] ==");
 		}
 		
-		cursor.close();
 	}
-
+/*
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -58,5 +45,5 @@ public class ListActivity extends Activity {
 		dbOpenHelper.close();
 		super.onDestroy();
 	}
-	
+*/	
 }
