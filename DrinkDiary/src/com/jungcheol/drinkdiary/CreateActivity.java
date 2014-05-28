@@ -93,6 +93,8 @@ public class CreateActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
+				Log.d("", "[ddLog] submitAction()");
+				
 				EditText placeTxt = (EditText)findViewById(R.id.placeTxt);
 				EditText peopleTxt = (EditText)findViewById(R.id.peopleTxt);
 				EditText beerTxt = (EditText)findViewById(R.id.beerTxt);
@@ -102,8 +104,9 @@ public class CreateActivity extends Activity {
 				EditText etcTxt = (EditText)findViewById(R.id.etcTxt);
 				
 				InfoClass info = new InfoClass();
-				/*
-				info.setImgSrc(fileUri.toString());
+				
+//				info.setImgSrc(fileUri.toString());
+				info.setImgSrc("/b");
 				info.setPlace(placeTxt.getText().toString());
 				info.setPeople(peopleTxt.getText().toString());
 				info.setBeer(Integer.parseInt(beerTxt.getText().toString()));
@@ -111,7 +114,10 @@ public class CreateActivity extends Activity {
 				info.setMalgoli(Integer.parseInt(malgoliTxt.getText().toString()));
 				info.setWhisky(Integer.parseInt(whiskyTxt.getText().toString()));
 				info.setEtc(Integer.parseInt(etcTxt.getText().toString()));
-				*/
+				
+				/*
+				InfoClass info = new InfoClass();
+				
 				info.setImgSrc("/aaaa");
 				info.setPlace("a");
 				info.setPeople("b");
@@ -120,6 +126,8 @@ public class CreateActivity extends Activity {
 				info.setMalgoli(3);
 				info.setWhisky(4);
 				info.setEtc(5);
+				
+				*/
 				
 				int result = db.insert(info);
 			}
