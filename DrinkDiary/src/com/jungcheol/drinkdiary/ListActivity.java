@@ -7,11 +7,15 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class ListActivity extends Activity {
 	
 	private DatabaseHelper db;
 	private InfoClass info;
+	private WebView webView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,13 @@ public class ListActivity extends Activity {
 			Log.d("", "[ddLog] etc : " + info.getEtc());
 			Log.d("", "[ddLog] ==");
 		}
+		
+		webView = (WebView)findViewById(R.id.webview);
+		webView.setWebViewClient(new WebViewClient());
+		WebSettings set = webView.getSettings();
+		set.setJavaScriptEnabled(true);
+		set.setBuiltInZoomControls(true);
+		webView.loadUrl("http://www.google.com");
 		
 	}
 /*
