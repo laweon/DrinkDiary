@@ -15,7 +15,7 @@ public class ListActivity extends Activity {
 	
 	private DatabaseHelper db;
 	private InfoClass info;
-	private WebView webView;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +38,10 @@ public class ListActivity extends Activity {
 			Log.d("", "[ddLog] whisky : " + info.getWhisky());
 			Log.d("", "[ddLog] etc : " + info.getEtc());
 			Log.d("", "[ddLog] ==");
+			
 		}
 		
-		webView = (WebView)findViewById(R.id.webview);
-		webView.setWebViewClient(new WebViewClient());
-		WebSettings set = webView.getSettings();
-		set.setJavaScriptEnabled(true);
-		set.setBuiltInZoomControls(true);
-		webView.loadUrl("http://www.google.com");
+
 		
 	}
 /*
