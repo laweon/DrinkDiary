@@ -105,8 +105,8 @@ public class CreateActivity extends Activity {
 				
 				InfoClass info = new InfoClass();
 				
-				info.setImgSrc(fileUri.toString());
-//				info.setImgSrc("/b");
+//				info.setImgSrc(fileUri.toString());
+				info.setImgSrc("/g");
 				info.setPlace(placeTxt.getText().toString());
 				info.setPeople(peopleTxt.getText().toString());
 				info.setBeer(Integer.parseInt(beerTxt.getText().toString()));
