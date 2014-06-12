@@ -21,7 +21,8 @@ public class ProfileActivity extends Activity {
 		set.setJavaScriptEnabled(true);
 		set.setBuiltInZoomControls(true);
 //		webView.loadUrl("http://www.google.com");
-		webView.loadUrl("http://192.168.0.138:8080/WebAppTest/setc.jsp");
+//		webView.loadUrl("http://192.168.0.138:8080/WebAppTest/setc.jsp");
+		webView.loadUrl("http://192.168.0.138:8080/WebAppTest/getc.jsp");
 		
 	}
 

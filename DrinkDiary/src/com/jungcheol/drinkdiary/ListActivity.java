@@ -86,17 +86,24 @@ public class ListActivity extends Activity {
 					os.write(body.getBytes());
 					os.flush();
 					os.close();
-				
+					
 					List<String> cookies = c.getHeaderFields().get("set-cookie");
 					
 					if (cookies != null) {
 						for (String cookie : cookies) {
+							Log.d("", "[ddLog] 1111");
 							Log.d("", "[ddLog] cookie : " + cookie.split(";\\s*")[0]);
 							
 						}
 					}
-				
+					
 					/*
+					String setCookie = c.getHeaderField("Set-Cookie");
+					if (setCookie != null) {
+						Log.d("", "[ddLog] cookie : " + setCookie);
+					}
+				*/
+				/*
 					Map<String, List<String>> headers = c.getHeaderFields();
 					Iterator<String> it = headers.keySet().iterator();
 					while (it.hasNext()) {
